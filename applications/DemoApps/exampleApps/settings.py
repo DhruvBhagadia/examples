@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+from dotenv import load_dotenv, find_dotenv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -31,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'social_django',
     'ScriptAutomation',
     'corsheaders',
     'django.contrib.admin',
@@ -51,7 +53,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 CORS_ORIGIN_ALLOW_ALL = True 
+
 ROOT_URLCONF = 'exampleApps.urls'
 
 TEMPLATES = [
@@ -121,3 +125,33 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+ENV_FILE = find_dotenv()
+if ENV_FILE:
+    load_dotenv(ENV_FILE)
+
+# SOCIAL AUTH  AUTH0 BACKEND CONFIG
+SOCIAL_AUTH_TRAILING_SLASH = False
+SOCIAL_AUTH_AUTH0_KEY = 'QbhS5Qiuugv6jEdzyPNQ4GLoX5eZ1nfW'
+SOCIAL_AUTH_AUTH0_SECRET = '5V9EpOeE02seSlq9u4Q9VmXJ40sMQEEHHTb6-qZiUdcTOxrzPjw9vu2nGbVMA5rU'
+SOCIAL_AUTH_AUTH0_SCOPE = [
+    'openid',
+    'profile'
+]
+SOCIAL_AUTH_AUTH0_DOMAIN = 'example-apps.auth0.com'
+AUDIENCE = None
+
+if SOCIAL_AUTH_AUTH0_DOMAIN:
+    AUDIENCE = 'https://' + SOCIAL_AUTH_AUTH0_DOMAIN + '/userinfo'
+
+if AUDIENCE:
+    SOCIAL_AUTH_AUTH0_AUTH_EXTRA_ARGUMENTS = {'audience': AUDIENCE}
+
+AUTHENTICATION_BACKENDS = {
+    'ScriptAutomation.auth0backend.Auth0',
+    'django.contrib.auth.backends.ModelBackend'
+}
+
+LOGIN_URL = "/login/auth0"
+LOGIN_REDIRECT_URL = "/app"
+LOGOUT_REDIRECT_URL = "/"

@@ -29,8 +29,14 @@ mat-toolbar-row {
     height: 85px !important;
 }
 
-
 .startButton{
     background-color: #4562E9;
     color: white;
+}
+
+.logoutBtn{
+    background-color: rgb(255, 153, 66);
+    position: fixed;
+    right: 1%;
+    top: 15%;
 }

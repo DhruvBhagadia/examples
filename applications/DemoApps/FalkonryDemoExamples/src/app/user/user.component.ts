@@ -433,7 +433,7 @@ test(){
 
   goToHome(){
       this.http.get("http://127.0.0.1:8000/delete/").subscribe();
-      this.router.navigate(['']);
+      this.router.navigate(['app']);
   }
 
 }

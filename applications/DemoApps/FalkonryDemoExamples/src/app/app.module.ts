@@ -39,7 +39,7 @@ import { StorageServiceModule} from 'angular-webstorage-service';
     StorageServiceModule,
     Ng4LoadingSpinnerModule.forRoot(),
     RouterModule.forRoot([
-      {path: '', component: HomeComponent},
+      {path: 'app', component: HomeComponent},
       {path: 'example', component: ExampleComponent},
       {path: 'visualize', component: UserComponent}
     ])

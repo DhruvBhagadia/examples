@@ -4,6 +4,7 @@ from falkonryclient import client as Falkonry
 from falkonryclient import schemas as Schemas
 from multiprocessing import Process
 import random, io, requests, time, json, sys, os
+from django.contrib.auth.decorators import login_required
 
 #instantiate Falkonry
 falkonry = None
@@ -318,8 +319,14 @@ def delete(request):
     }
     return JsonResponse([{}],  content_type="application/json", safe=False)
 
+def login(request):
+    return render(request, "login.html", {})
+
+@login_required
 def angular(request):
     return render(request, "index.html", {})
 
 def visualize(request):
     return render(request, "index.html", {})
+
+

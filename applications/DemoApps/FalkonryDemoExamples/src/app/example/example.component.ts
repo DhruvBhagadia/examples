@@ -93,7 +93,7 @@ export class ExampleComponent implements OnInit {
   deleteClicked() {
     this.http.get("http://127.0.0.1:8000/delete/").subscribe();
     this.notCompleted = false;
-    this.router.navigate(['']);
+    this.router.navigate(['app']);
   }
  
   @HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {

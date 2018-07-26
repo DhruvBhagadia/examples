@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   someThing = true;
   constructor(private http: HttpClient, private router:Router) { 
   }
-
+  
   ngOnInit() {
   }
 
