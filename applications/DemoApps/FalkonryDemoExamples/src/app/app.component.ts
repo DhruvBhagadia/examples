@@ -23,7 +23,8 @@ export class AppComponent {
   connected;
   validHostAndToken = false;
   constructor(private http: HttpClient, private dataService: DataService) {
-    
+    this.host = sessionStorage.getItem("host");
+    this.token = sessionStorage.getItem("token");
   }
 
   delay(ms: number) {

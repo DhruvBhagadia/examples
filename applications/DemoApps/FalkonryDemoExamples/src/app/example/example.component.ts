@@ -25,15 +25,15 @@ export class ExampleComponent implements OnInit {
   notCompleted = true;
 
   constructor(private http: HttpClient, private router: Router) {
-       
+
     if(sessionStorage.getItem("start")){
       this.example = sessionStorage.getItem("example");
       sessionStorage.setItem("start", JSON.stringify(false));
       this.getStatus();
     }
     else
-      this.router.navigate(['/']);
-    
+      this.router.navigate(['app']);
+
   }
 
   delay(ms: number) {
@@ -69,7 +69,7 @@ export class ExampleComponent implements OnInit {
     this.isCompleted = true;
   }
 
-  
+
 
   disableAllSpinners(){
      this.dataStreamSpinner = this.addDataSpinner = this.learningPatternSpinner = this.liveMonitoringSpinner = false;
@@ -95,7 +95,7 @@ export class ExampleComponent implements OnInit {
     this.notCompleted = false;
     this.router.navigate(['app']);
   }
- 
+
   @HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {
     sessionStorage.removeItem("start")
     this.deleteClicked();
@@ -103,4 +103,3 @@ export class ExampleComponent implements OnInit {
   ngOnInit() {
   }
 }
-
